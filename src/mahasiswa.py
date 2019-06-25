@@ -57,9 +57,10 @@ class Mahasiswa(KerangkaMahasiswa):
         dbName = self.__dbname
         user = self.__user
         password = self.__password
+        conn = None
         try:
             conn = psycopg2.connect(
-                dbName=dbName,
+                database=dbName,
                 user=user,
                 password=password
             )
@@ -89,6 +90,12 @@ class Mahasiswa(KerangkaMahasiswa):
         pass
 def main():
     myMahasiswa = Mahasiswa()
-
+    inputDatabase = input('Database : ')
+    inputUsername = input('User : ')
+    inputPassword = input('Password : ')
+    myMahasiswa.setDbName(inputDatabase)
+    myMahasiswa.setUser(inputUsername)
+    myMahasiswa.setPassword(inputPassword)
+    myMahasiswa.tambahMahasiswa()
 if __name__ == "__main__":
     main()
